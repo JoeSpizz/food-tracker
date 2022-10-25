@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {LinkContainer} from 'react-router-bootstrap'
 
 function NavBar({setUser}) {
     function logout(){
@@ -16,7 +17,9 @@ function NavBar({setUser}) {
   return (
     <Navbar bg="info" expand="lg" className='navbar'>
         <Container fluid>
-        <Navbar.Brand href="#">Food Tracker</Navbar.Brand>
+        <LinkContainer to="/">
+        <Navbar.Brand >Food Tracker</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -25,19 +28,29 @@ function NavBar({setUser}) {
             navbarScroll
           >
           <NavDropdown title="Pantry" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Ingredients</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
+          <LinkContainer to="/ingredients"> 
+          <NavDropdown.Item>Ingredients</NavDropdown.Item> 
+          </LinkContainer>
+          <LinkContainer to="/spices"> 
+              <NavDropdown.Item >
                 Spices
               </NavDropdown.Item>
+              </LinkContainer>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
+              <LinkContainer to="/meals">
+              <NavDropdown.Item>
                 Premade Meals
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action6">
+              </LinkContainer>
+              <LinkContainer to="/leftovers">
+              <NavDropdown.Item>
                 Leftovers
               </NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
-            <Nav.Link href="#action1">All Foods</Nav.Link>
+            <LinkContainer to="/allFoods">
+            <Nav.Link >All Foods</Nav.Link>
+            </LinkContainer>
           </Nav>
           <Form className="d-flex">
             <Form.Control

@@ -1,7 +1,17 @@
 import './index.css';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 import Login from './components/Login';
 import {useState, useEffect} from 'react'
-import NavBar from './components/NavBar';
+import Welcome from './components/Welcome';
+import AllFoods from './components/AllFoods';
+import Ingredients from './components/Ingredients';
+import Spices from './components/Spices';
+import Meals from './components/Meals';
+import Leftovers from './components/Leftovers';
 function App() {
   const [user, setUser] = useState(null);
 
@@ -23,10 +33,16 @@ function App() {
 console.log(user)
   return (
     <div className="Body">
-       <NavBar setUser={setUser}/>
-        <p>
-         The future home of the Food Tracker <br></br> An app wherein you can easily review the food you currently have in your house. Check expiration dates, and decide if you have all the ingredients you need to make that meal you wanted. 
-        </p>
+      <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Welcome setUser={setUser}/>} />
+        <Route exact path="/allFoods" element={<AllFoods/>}  />
+        <Route exact path="/ingredients" element={<Ingredients/>} />
+        <Route exact path="/spices" element={<Spices/>} />
+        <Route exact path="/meals" element={<Meals/>} />
+        <Route exact path="/leftovers" element={<Leftovers/>} />
+       </Routes>  
+       </BrowserRouter>
     </div>
   );
 }
