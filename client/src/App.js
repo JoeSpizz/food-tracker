@@ -35,7 +35,7 @@ console.log(user)
     <div className="Body">
       <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Welcome setUser={setUser}/>} />
+        <Route exact path="/" element={<Welcome setUser={setUser} user={user}/>} />
         <Route exact path="/allFoods" element={<AllFoods/>}  />
         <Route exact path="/ingredients" element={<Ingredients/>} />
         <Route exact path="/spices" element={<Spices/>} />

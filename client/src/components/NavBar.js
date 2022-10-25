@@ -5,8 +5,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {LinkContainer} from 'react-router-bootstrap'
+import {useState} from 'react'
 
 function NavBar({setUser}) {
+    const [show, setShow] = useState(false);
+const showDropdown = (e)=>{
+    setShow(!show);
+}
+const hideDropdown = e => {
+    setShow(false);
+}
     function logout(){
             fetch("/logout", { method: "DELETE" }).then((r) => {
               if (r.ok) {
@@ -27,9 +35,12 @@ function NavBar({setUser}) {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-          <NavDropdown title="Pantry" id="navbarScrollingDropdown">
+          <NavDropdown title="Pantry" id="navbarDropdown" show={show}
+   onMouseEnter={showDropdown} 
+   onMouseLeave={hideDropdown}
+   >
           <LinkContainer to="/ingredients"> 
-          <NavDropdown.Item>Ingredients</NavDropdown.Item> 
+          <NavDropdown.Item className="dropdownItem">Ingredients</NavDropdown.Item> 
           </LinkContainer>
           <LinkContainer to="/spices"> 
               <NavDropdown.Item >
@@ -55,7 +66,7 @@ function NavBar({setUser}) {
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Search Pantry"
               className="me-2"
               aria-label="Search"
             />

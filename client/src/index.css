@@ -1,6 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
 .Body{
   color:white;
   text-align: center;
+  font-family: "Raleway";
 }
 
 code {
@@ -13,4 +16,19 @@ code {
 
 #loginPage{
   color: white
+}
+
+.appExplination {
+  max-width: 400px;
+  width: auto;
+  margin: auto;
+  letter-spacing: 1px;
+  font-size: larger;
+}
+
+.nav-item .dropdown-menu {
+  background: white;
+}
+.nav-item .dropdown-item:hover {
+  background: #39C0ED;
 }

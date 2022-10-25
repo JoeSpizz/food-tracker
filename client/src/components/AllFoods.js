@@ -5,7 +5,10 @@ function AllFoods() {
   return (
     <div>
         <NavBar/>
-        <p>We will put a list of ALL food here</p></div>
+       <h1>All Foods</h1>
+       
+        
+        </div>
   )
 }
 

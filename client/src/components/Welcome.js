@@ -1,12 +1,18 @@
 import React from 'react'
 import NavBar from './NavBar'
+import Button from 'react-bootstrap/Button';
+import { LinkContainer } from 'react-router-bootstrap';
 
-function Welcome({setUser}) {
+function Welcome({setUser, user}) {
   return (
-    <div>
+    <div className='welcome'>
        <NavBar setUser={setUser}/>
-       <p>
-         The future home of the Food Tracker <br></br> An app wherein you can easily review the food you currently have in your house. Check expiration dates, and decide if you have all the ingredients you need to make that meal you wanted. 
+       <h1> Welcome to your Pantry, {user}!</h1>
+       <p className='appExplination'>
+         To add new ingredients, spices, or premade meals to your pantry's inventory visit the {<LinkContainer to="/allFoods"><Button variant="outline-info"> All Foods </Button></LinkContainer>} page.
+         When you are ready to make some food you can review your {<LinkContainer to="/ingredients"><Button variant="outline-info"> ingredients </Button></LinkContainer>} and {<LinkContainer to="/spices"><Button variant="outline-info"> spices </Button></LinkContainer>} to ensure you have everything you need. If you don't have the time or energy to cook, just head over to your pre-made {<LinkContainer to="/meals"><Button variant="outline-info"> meals </Button></LinkContainer>} or {<LinkContainer to="/leftovers"><Button variant="outline-info">leftovers </Button></LinkContainer>} and pick something to eat NOW!
+         <br></br>
+         The search bar located on the top right of this page will search only your pantry.
         </p>
     </div>
   )
