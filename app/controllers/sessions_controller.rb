@@ -10,4 +10,7 @@ class SessionsController < ApplicationController
         render json: { errors: ["Invalid username or password"] }, status: :unauthorized
       end
     end
+
+  
+
 end

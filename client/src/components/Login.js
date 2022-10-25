@@ -1,14 +1,12 @@
 import React, {useState} from 'react'
 import CreateUser from './CreateUser'
 
-function Login() {
+function Login({login}) {
     const [userForm, setUserForm] = useState(false)
     const [visibilityState, setvisibilityState] = useState("visible")
     const [name, setName] = useState ("")
     const [password, setPassword] = useState("")
-    // const [password, setPassword]= useState("")
-       // function changePass(e){
-    //     setPassword(e.target.value)}
+   
     function handleClick(){
         setUserForm(!userForm)
         if (visibilityState ==="visible"){
@@ -35,7 +33,7 @@ function Login() {
         })
         .then (r=>{
             if (r.ok) {
-            r.json().then(data=>alert(data.username))
+            r.json().then(data=>login(data.username))
             }
             else{
                 r.json().then(data=>alert(data.errors))
