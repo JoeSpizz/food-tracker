@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Spices() {
+function Spices({pantry}) {
   return (
     <div>
         <p>All your spices!</p>

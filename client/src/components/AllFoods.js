@@ -5,13 +5,26 @@ import AllFoodCard from './AllFoodCard';
 
 function AllFoods() {
     const [foods, setFoods] = useState([])
+    const [display, setDisplay] = useState([])
 
     useEffect(()=>{
         fetch('/foods')
         .then(r=>r.json())
-        .then(foods=>setFoods(foods))
+        .then(foods=>{
+            setFoods(foods)
+            setDisplay(foods)})
     }, [])
-// fetch get from '/allfoods' 
+
+    function filter (e){
+        let category = e.target.value
+        if (category === "All Foods"){
+            setDisplay(foods)
+        }
+        else {
+       let displayedFoods= foods.filter(food => food.category === category)
+        setDisplay(displayedFoods)
+        }
+    }
 
   return (
     <div>
@@ -27,15 +40,16 @@ function AllFoods() {
             <Button variant="outline-light">Search</Button>
           </Form>
           <h3> OR FILTER BY:</h3>
-          <Form.Select aria-label="Default select example">
-      <option>Food Types</option>
-      <option value="ingredients">Ingredients</option>
-      <option value="spices">Spices</option>
-      <option value="premade">Pre-Made</option>
+          <Form.Select aria-label="Default select example" onChange={filter}>
+      <option>All Foods</option>
+      <option value="ingredient">Ingredients</option>
+      <option value="spice">Spices</option>
+      <option value="premade">Pre-Made Meals</option>
+      <option value="snack">Snacks</option>
     </Form.Select>
     </div>
 
-    {foods.map(food=> <AllFoodCard food={food} key={food.id}/>)}
+    {display.map(food=> <AllFoodCard food={food} key={food.id}/>)}
   
     </div>
   )

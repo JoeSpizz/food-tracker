@@ -39,12 +39,20 @@ const hideDropdown = e => {
    onMouseEnter={showDropdown} 
    onMouseLeave={hideDropdown}
    >
+       <LinkContainer to="/inventory"> 
+          <NavDropdown.Item className="dropdownItem">Full Inventory</NavDropdown.Item> 
+          </LinkContainer>
           <LinkContainer to="/ingredients"> 
           <NavDropdown.Item className="dropdownItem">Ingredients</NavDropdown.Item> 
           </LinkContainer>
           <LinkContainer to="/spices"> 
               <NavDropdown.Item >
                 Spices
+              </NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/snacks"> 
+              <NavDropdown.Item >
+                Snacks
               </NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider />

@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import InventoryCard from './InventoryCard'
 
 
-function Meals() {
+function Meals({pantry}) {
+    const [meals, setmeals] = useState([])
+
+    useEffect(()=>{
+       let items= pantry.filter(item => item.category === 'premade')
+       setmeals(items)
+    },[pantry])
   return (
     <div>
-        <p> prepared meals</p>
+       {meals.map(meal=><InventoryCard food={meal}/>)}
     </div>
   )
 }

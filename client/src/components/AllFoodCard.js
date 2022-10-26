@@ -22,13 +22,28 @@ useEffect(()=> {
     setExp(`${year}/${day}/${month}`)
 }, [food])
 
-
+function addFoodToPantry(e){
+    e.preventDefault()
+    let itemID = e.target.parentNode.firstChild.id
+    fetch ('/pantryitems', {
+        method: "POST",
+        headers: {
+            "Content-type" : "Application/json"
+        },
+        body: JSON.stringify({
+            id: itemID,
+            expiration: exp
+        })
+    })
+    .then(r=>r.json())
+    .then(alert(food.name + " added to pantry"))
+}
   return (
-    <div className='allFoodsCard'>
+    <div className='allFoodsCard' >
         <Card style={{ width: '13rem' }} bg="secondary">
       <Card.Img src={food.url} style={{ height: '10rem' }}/>
       <Card.Body>
-        <Card.Title>{food.name}</Card.Title>
+        <Card.Title id={food.id}>{food.name}</Card.Title>
         {editExp ? <Card.Text> <Form>
             <Form.Control 
             type="date"
@@ -40,7 +55,7 @@ useEffect(()=> {
           {exp}
           <Button style={{marginLeft : '15px'}} variant="danger" onClick={expEdit}>Edit</Button>
         </Card.Text> }
-        <Button variant="success" style={{marginBottom : '-10px'}}>Add to Pantry</Button> 
+        <Button variant="success" style={{marginBottom : '-10px'}} onClick={addFoodToPantry}>Add to Pantry</Button> 
       </Card.Body>
     </Card>
     </div>
