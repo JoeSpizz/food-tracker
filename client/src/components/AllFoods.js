@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
 import AllFoodCard from './AllFoodCard';
 
 function AllFoods() {
+    const [foods, setFoods] = useState([])
 
+    useEffect(()=>{
+        fetch('/foods')
+        .then(r=>r.json())
+        .then(foods=>setFoods(foods))
+    }, [])
 // fetch get from '/allfoods' 
 
   return (
@@ -28,8 +34,9 @@ function AllFoods() {
       <option value="premade">Pre-Made</option>
     </Form.Select>
     </div>
-       
-    <AllFoodCard/>
+
+    {foods.map(food=> <AllFoodCard food={food} key={food.id}/>)}
+  
     </div>
   )
 }

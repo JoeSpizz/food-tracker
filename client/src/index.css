@@ -36,3 +36,10 @@ code {
 .allSearch {
   margin: auto;
   width: 350px;}
+
+.allFoodsCard{
+  display: inline-flex;
+ margin-left: 15px;
+  margin-top: 15px;
+  width: 15rem;
+  }
