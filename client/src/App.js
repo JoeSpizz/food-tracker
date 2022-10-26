@@ -12,6 +12,7 @@ import Ingredients from './components/Ingredients';
 import Spices from './components/Spices';
 import Meals from './components/Meals';
 import Leftovers from './components/Leftovers';
+import NavBar from './components/NavBar';
 function App() {
   const [user, setUser] = useState(null);
 
@@ -33,9 +34,11 @@ function App() {
 console.log(user)
   return (
     <div className="Body">
+      
       <BrowserRouter>
+      <NavBar setUser={setUser}/>
       <Routes>
-        <Route exact path="/" element={<Welcome setUser={setUser} user={user}/>} />
+        <Route exact path="/" element={<Welcome user={user}/>} />
         <Route exact path="/allFoods" element={<AllFoods/>}  />
         <Route exact path="/ingredients" element={<Ingredients/>} />
         <Route exact path="/spices" element={<Spices/>} />

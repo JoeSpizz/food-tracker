@@ -1,12 +1,10 @@
 import React from 'react'
-import NavBar from './NavBar'
 import Button from 'react-bootstrap/Button';
 import { LinkContainer } from 'react-router-bootstrap';
 
 function Welcome({setUser, user}) {
   return (
     <div className='welcome'>
-       <NavBar setUser={setUser}/>
        <h1> Welcome to your Pantry, {user}!</h1>
        <p className='appExplination'>
          To add new ingredients, spices, or premade meals to your pantry's inventory visit the {<LinkContainer to="/allFoods"><Button variant="outline-info"> All Foods </Button></LinkContainer>} page.
@@ -14,6 +12,8 @@ function Welcome({setUser, user}) {
          <br></br>
          The search bar located on the top right of this page will search only your pantry.
         </p>
+
+
     </div>
   )
 }
