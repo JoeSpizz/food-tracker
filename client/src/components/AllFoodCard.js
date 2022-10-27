@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form';
 
-function AllFoodCard({food}) {
+function AllFoodCard({food, finalizeAdd}) {
 const [editExp, setEditExp] = useState(false)
 const [exp, setExp] = useState("")
 function expEdit(){
@@ -17,7 +17,7 @@ useEffect(()=> {
     let date = new Date();
     date.setDate(date.getDate() + food.ave_expiration_length);
     let day = date.getDate()
-    let month = date.getMonth()
+    let month = date.getMonth() +1
     let year = date.getFullYear()
     setExp(`${year}/${day}/${month}`)
 }, [food])
@@ -36,7 +36,9 @@ function addFoodToPantry(e){
         })
     })
     .then(r=>r.json())
-    .then(alert(food.name + " added to pantry"))
+    .then(data=> {
+      alert(food.name + " added to pantry")
+      finalizeAdd(data, food)})
 }
   return (
     <div className='allFoodsCard' >

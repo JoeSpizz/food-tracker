@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import InventoryCard from './InventoryCard'
 
 
-function Leftovers({pantry}) {
+function Leftovers({pantry, deletePantryItem}) {
     const [leftovers, setleftovers] = useState([])
 
     useEffect(()=>{
@@ -11,7 +11,7 @@ function Leftovers({pantry}) {
     },[pantry])
   return (
     <div>
-       {leftovers.map(leftover=><InventoryCard food={leftover}/>)}
+       {leftovers.map(leftover=><InventoryCard food={leftover} deletePantryItem={deletePantryItem} key={leftover.id}/>)}
     </div>
   )
 }

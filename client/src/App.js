@@ -18,7 +18,7 @@ import Snacks from './components/Snacks';
 function App() {
   const [user, setUser] = useState(null);
   const [pantry, setPantry] = useState([])
-
+  
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -33,11 +33,33 @@ useEffect(()=>{
     .then(r=>r.json())
     .then(data=> setPantry(data))
 }, [])
-  
+
   function login(data){
     setUser(data)
   }
-console.log(pantry)
+  function finalizeAdd(data, food){
+    let test = pantry.filter(item => item.name === food.name)
+    
+    if (test.length === 0){
+      let newItem = food
+      newItem.pantryitems.push(data)
+      let newPantry = pantry
+      newPantry.push(food)
+      setPantry(newPantry)
+    }
+    else {
+      // console.log(test[0].pantryitems[0].quantity +1)
+      console.log(data)
+
+    }
+    
+  }
+  function deletePantryItem (id){
+    let newPantry = pantry.filter(item => item.id !== id)
+    setPantry(newPantry)
+  }
+
+
   if (!user) return <Login login={login} />;
   return (
     <div className="Body">
@@ -46,13 +68,13 @@ console.log(pantry)
       <NavBar setUser={setUser}/>
       <Routes>
         <Route exact path="/" element={<Welcome user={user}/>} />
-        <Route exact path="/inventory" element={<Inventory pantry={pantry}/>}  />
-        <Route exact path="/allFoods" element={<AllFoods/>}  />
-        <Route exact path="/ingredients" element={<Ingredients pantry={pantry}/>} />
-        <Route exact path="/spices" element={<Spices pantry={pantry}/>} />
-        <Route exact path="/snacks" element={<Snacks pantry={pantry}/>} />
-        <Route exact path="/meals" element={<Meals pantry={pantry}/>} />
-        <Route exact path="/leftovers" element={<Leftovers pantry={pantry}/>} />
+        <Route exact path="/inventory" element={<Inventory pantry={pantry} deletePantryItem={deletePantryItem}/>}  />
+        <Route exact path="/allFoods" element={<AllFoods finalizeAdd={finalizeAdd}/>}  />
+        <Route exact path="/ingredients" element={<Ingredients pantry={pantry} deletePantryItem={deletePantryItem} />} />
+        <Route exact path="/spices" element={<Spices pantry={pantry} deletePantryItem={deletePantryItem}/>} />
+        <Route exact path="/snacks" element={<Snacks pantry={pantry} deletePantryItem={deletePantryItem}/>} />
+        <Route exact path="/meals" element={<Meals pantry={pantry} deletePantryItem={deletePantryItem}/>} />
+        <Route exact path="/leftovers" element={<Leftovers pantry={pantry} deletePantryItem={deletePantryItem}/>} />
        </Routes>  
        </BrowserRouter>
     </div>

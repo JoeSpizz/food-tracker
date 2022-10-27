@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
 import AllFoodCard from './AllFoodCard';
 
-function AllFoods() {
+function AllFoods({finalizeAdd}) {
     const [foods, setFoods] = useState([])
     const [display, setDisplay] = useState([])
 
@@ -49,7 +49,7 @@ function AllFoods() {
     </Form.Select>
     </div>
 
-    {display.map(food=> <AllFoodCard food={food} key={food.id}/>)}
+    {display.map(food=> <AllFoodCard food={food} key={food.id} finalizeAdd={finalizeAdd}/>)}
   
     </div>
   )

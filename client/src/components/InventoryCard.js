@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
 
-function InventoryCard({food}) {
-
-let quantity = food.pantryitems.length
+function InventoryCard({food, deletePantryItem}) {
+  const [quantity, setQuantity] = useState(food.pantryitems[0].quantity)
+console.log(food)
     function deleteFromPantry(){
-      console.log(food.id)
         fetch(`/pantryitems/${food.id}`, 
         { method: "DELETE" }).then((r) => {
             if (r.ok) {
-             quantity -= 1
+              if (quantity > 1){
+                setQuantity(quantity-1)
+              }
+              else
+             deletePantryItem(food.id)
             }
           });
     }

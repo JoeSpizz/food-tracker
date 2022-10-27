@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_26_184304) do
+ActiveRecord::Schema.define(version: 2022_10_27_193912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2022_10_26_184304) do
     t.string "expiration_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
     t.index ["food_id"], name: "index_pantryitems_on_food_id"
     t.index ["user_id"], name: "index_pantryitems_on_user_id"
   end

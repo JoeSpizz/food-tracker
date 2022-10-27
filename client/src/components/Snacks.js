@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import InventoryCard from './InventoryCard'
 
-function Snacks({pantry}) {
+function Snacks({pantry, deletePantryItem}) {
     const [snacks, setsnacks] = useState([])
 
     useEffect(()=>{
@@ -10,7 +10,7 @@ function Snacks({pantry}) {
     },[pantry])
   return (
     <div>
-            {snacks.map(snack=><InventoryCard food={snack}/>)}
+            {snacks.map(snack=><InventoryCard food={snack} deletePantryItem={deletePantryItem} key={snack.id}/>)}
     </div>
   )
 }
