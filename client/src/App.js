@@ -29,7 +29,7 @@ function App() {
   }, []);
 
 useEffect(()=>{
-    fetch('pantryitems')
+    fetch('/pantryitems')
     .then(r=>r.json())
     .then(data=> setPantry(data))
 }, [])
@@ -37,7 +37,7 @@ useEffect(()=>{
   function login(data){
     setUser(data)
   }
-
+console.log(pantry)
   if (!user) return <Login login={login} />;
   return (
     <div className="Body">

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :pantryitems
-  resources :foods, only: [:index, :show, :create, :update]
+  resources :pantryitems do
+    resources :foods 
+  end
+  resources :foods do
+    resources :pantryitems
+  end
   resources :users
   post '/signup', to: "users#create"
   post '/login', to: "sessions#create"

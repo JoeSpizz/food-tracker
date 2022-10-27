@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import Ingredients from './Ingredients'
 import Leftovers from './Leftovers'
 import Meals from './Meals'

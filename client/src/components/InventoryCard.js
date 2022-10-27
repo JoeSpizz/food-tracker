@@ -5,9 +5,15 @@ import Card from 'react-bootstrap/Card'
 
 function InventoryCard({food}) {
 
-console.log(food)
+let quantity = food.pantryitems.length
     function deleteFromPantry(){
-
+      console.log(food.id)
+        fetch(`/pantryitems/${food.id}`, 
+        { method: "DELETE" }).then((r) => {
+            if (r.ok) {
+             quantity -= 1
+            }
+          });
     }
   return (
     <div className='pantryItemCard' >
@@ -16,7 +22,10 @@ console.log(food)
   <Card.Body>
     <Card.Title id={food.id}>{food.name}</Card.Title>
  <Card.Text>
-      "hmmm"
+      {"Expires: " + food.pantryitems[0].expiration_date}
+    </Card.Text>
+    <Card.Text>
+      {"Quantity: " + quantity}
     </Card.Text>
     <Button variant="success" style={{marginBottom : '-10px'}} onClick={deleteFromPantry}>Remove</Button> 
   </Card.Body>

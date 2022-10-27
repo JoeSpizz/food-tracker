@@ -9,7 +9,6 @@ function Ingredients({pantry}) {
        let items= pantry.filter(item => item.category === 'ingredient')
        setIngredients(items)
     },[pantry])
-console.log(ingredients)
   return (
     <div>
         {ingredients.map(ingredient=><InventoryCard food={ingredient}/>)}

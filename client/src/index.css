@@ -43,3 +43,9 @@ code {
   margin-top: 15px;
   width: 15rem;
   }
+
+  .pantryItemCard {
+    display: inline-flex;
+    margin-left: 15px;
+  margin-top: 15px;
+  }
