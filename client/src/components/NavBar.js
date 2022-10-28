@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -71,15 +70,7 @@ const hideDropdown = e => {
             <Nav.Link >All Foods</Nav.Link>
             </LinkContainer>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search Pantry"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-dark">Search</Button>
-          </Form>
+         
           <Button variant="danger" className='logoutBtn' onClick={logout}>Logout</Button>
         </Navbar.Collapse>
 

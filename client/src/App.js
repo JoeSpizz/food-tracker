@@ -48,8 +48,9 @@ useEffect(()=>{
       setPantry(newPantry)
     }
     else {
-      // console.log(test[0].pantryitems[0].quantity +1)
-      console.log(data)
+      fetch('/pantryitems')
+    .then(r=>r.json())
+    .then(data=> setPantry(data))
 
     }
     

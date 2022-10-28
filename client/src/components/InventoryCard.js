@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card'
 
 function InventoryCard({food, deletePantryItem}) {
   const [quantity, setQuantity] = useState(food.pantryitems[0].quantity)
-console.log(food)
     function deleteFromPantry(){
         fetch(`/pantryitems/${food.id}`, 
         { method: "DELETE" }).then((r) => {
