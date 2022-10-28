@@ -29,6 +29,20 @@ function Inventory({pantry, deletePantryItem}) {
  function typing(e){
    setValue(e.target.value)
  }
+
+let pantryDates = pantry.map(food => food.pantryitems[0].expiration_date)
+console.log(pantryDates)
+let expDates = pantryDates.map(item => new Date(item))
+let today = new Date()
+today.setDate(today.getDate()+30)
+let expiring = expDates.filter(date => date.getTime() < today.getTime())
+console.log(expiring) 
+
+
+// test.setDate(test.getDate()-30)
+// console.log(test.getDate())
+
+
   return (
     <div>
         <h1>Everything in your Pantry is here!</h1>
@@ -44,9 +58,12 @@ function Inventory({pantry, deletePantryItem}) {
             />
             <Button variant="success"><span class="reload" onClick={refresh}>&#x21bb;</span></Button>
             <Button variant="info"   onClick={search}>Search</Button>
-            
-
           </Form>
+    <div className='expiredcontainer'>
+        <h1> Expired or Soon to Be Expired:</h1>
+        {/* {pantry.filter(item=> item.)} */}
+
+    </div>
         <Ingredients pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
         <Spices pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
         <Snacks pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>

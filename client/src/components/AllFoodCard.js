@@ -19,7 +19,7 @@ useEffect(()=> {
     let day = date.getDate()
     let month = date.getMonth() +1
     let year = date.getFullYear()
-    setExp(`${year}/${day}/${month}`)
+    setExp(`${year}-${month}-${day}`)
 }, [food])
 
 function addFoodToPantry(e){

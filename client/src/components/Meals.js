@@ -7,7 +7,7 @@ function Meals({pantry, deletePantryItem, searched}) {
 
     useEffect(()=>{
       if (searched === undefined){
-       let items= pantry.filter(item => item.category === 'meal')
+       let items= pantry.filter(item => item.category === 'premade')
        setmeals(items)
       }
       else{
