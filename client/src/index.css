@@ -43,7 +43,11 @@ code {
   margin-top: 15px;
   width: auto;
   }
-
+#pantryTitle {
+  font-size: 5em;
+  font-weight: bolder;
+  color: #39C0ED;
+}
   .pantryItemCard {
     display: inline-flex;
     margin-left: 15px;
@@ -58,3 +62,16 @@ code {
    width: auto;
    margin-left: 5px;
  }
+#expireTitle {
+  font-size: 3em;
+  color: #df4759;
+}
+.pantrySection {
+  font-size: 3em;
+/* border: 5px;
+border-color: #39C0ED;
+border-style: solid;
+border-radius: 10%;
+width: auto;
+margin-bottom: 5px; */
+}

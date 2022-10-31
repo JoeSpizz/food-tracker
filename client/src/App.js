@@ -51,10 +51,8 @@ useEffect(()=>{
       fetch('/pantryitems')
     .then(r=>r.json())
     .then(data=> setPantry(data))
-
-    }
-    
-  }
+    }}
+console.log(pantry)
   function deletePantryItem (id){
     let newPantry = pantry.filter(item => item.id !== id)
     setPantry(newPantry)
@@ -69,7 +67,7 @@ useEffect(()=>{
       <NavBar setUser={setUser}/>
       <Routes>
         <Route exact path="/" element={<Welcome user={user}/>} />
-        <Route exact path="/inventory" element={<Inventory pantry={pantry} deletePantryItem={deletePantryItem}/>}  />
+        <Route exact path="/inventory" element={<Inventory pantry={pantry} deletePantryItem={deletePantryItem} user={user}/>}  />
         <Route exact path="/allFoods" element={<AllFoods finalizeAdd={finalizeAdd}/>}  />
         <Route exact path="/ingredients" element={<Ingredients pantry={pantry} deletePantryItem={deletePantryItem} />} />
         <Route exact path="/spices" element={<Spices pantry={pantry} deletePantryItem={deletePantryItem}/>} />

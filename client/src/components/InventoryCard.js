@@ -29,7 +29,7 @@ function InventoryCard({food, deletePantryItem}) {
     <Card.Text>
       {"Quantity: " + quantity}
     </Card.Text>
-    <Button variant="success" style={{marginBottom : '-10px'}} onClick={deleteFromPantry}>Remove</Button> 
+    <Button variant="danger" style={{marginBottom : '-10px'}} onClick={deleteFromPantry}>Remove</Button> 
   </Card.Body>
 </Card>
 </div>

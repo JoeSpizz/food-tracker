@@ -23,7 +23,7 @@ function Ingredients({pantry, deletePantryItem, searched}) {
 
 
   return (
-    <div>
+    <div className='pantrySection'>
       <h2>Ingredients</h2>
         {ingredients.map(ingredient=><InventoryCard food={ingredient} deletePantryItem={deletePantryItem} key={ingredient.id}/>)}
     </div>

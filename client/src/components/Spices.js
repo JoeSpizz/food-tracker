@@ -16,7 +16,7 @@ function Spices({pantry, deletePantryItem, searched}) {
     }},[pantry, searched])
 
 return (
-  <div>
+  <div className='pantrySection'>
     <h2> Spices</h2>
           {spices.map(spice=><InventoryCard food={spice} deletePantryItem={deletePantryItem} key={spice.id}/>)}
   </div>

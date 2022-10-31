@@ -8,7 +8,7 @@ import Meals from './Meals'
 import Snacks from './Snacks'
 import Spices from './Spices'
 
-function Inventory({pantry, deletePantryItem}) {
+function Inventory({pantry, deletePantryItem, user}) {
   const [searched, setSearch] = useState(undefined)
   const [value, setValue] = useState("")
   const [expiring, setExpiring] = useState([])
@@ -51,9 +51,8 @@ useEffect(()=>{
 
   return (
     <div>
-        <h1>Everything in your Pantry is here!</h1>
+        <h1 id="pantryTitle">{user}'s Pantry</h1>
         <Form className="pantrySearch" onSubmit={submit}>
-          
             <Form.Control
               type="search"
               placeholder="Search Pantry"
@@ -65,8 +64,8 @@ useEffect(()=>{
             <Button variant="success"><span class="reload" onClick={refresh}>&#x21bb;</span></Button>
             <Button variant="info"   onClick={search}>Search</Button>
           </Form>
-    <div className='expiredcontainer'>
-        <h1> Expired or Soon to Be Expired:</h1>
+    <div >
+        <h1 id="expireTitle"> EXPIRING:</h1>
         {expiring.map( product => <Expiring food={product} key={product.id}/> )}
     </div>
         <Ingredients pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>

@@ -18,7 +18,7 @@ function Meals({pantry, deletePantryItem, searched}) {
 
 
   return (
-    <div>
+    <div className='pantrySection'>
       <h2> Meals</h2>
        {meals.map(meal=><InventoryCard food={meal} deletePantryItem={deletePantryItem} key={meal.id}/>)}
     </div>

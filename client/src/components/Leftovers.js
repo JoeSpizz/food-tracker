@@ -17,7 +17,7 @@ function Leftovers({pantry, deletePantryItem, searched}) {
 
 
   return (
-    <div>
+    <div className='pantrySection'>
       <h2> Leftovers</h2>
        {leftovers.map(leftover=><InventoryCard food={leftover} deletePantryItem={deletePantryItem} key={leftover.id}/>)}
     </div>
