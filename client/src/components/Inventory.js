@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import Form  from 'react-bootstrap/Form'
+import Expiring from './Expiring'
 import Ingredients from './Ingredients'
 import Leftovers from './Leftovers'
 import Meals from './Meals'
@@ -10,6 +11,8 @@ import Spices from './Spices'
 function Inventory({pantry, deletePantryItem}) {
   const [searched, setSearch] = useState(undefined)
   const [value, setValue] = useState("")
+  const [expiring, setExpiring] = useState([])
+
   function search (e){
     e.preventDefault()
     let item = e.target.parentNode.firstChild.value
@@ -29,19 +32,22 @@ function Inventory({pantry, deletePantryItem}) {
  function typing(e){
    setValue(e.target.value)
  }
-
-let pantryDates = pantry.map(food => food.pantryitems[0].expiration_date)
-console.log(pantryDates)
-let expDates = pantryDates.map(item => new Date(item))
-let today = new Date()
-today.setDate(today.getDate()+30)
-let expiring = expDates.filter(date => date.getTime() < today.getTime())
-console.log(expiring) 
-
-
-// test.setDate(test.getDate()-30)
-// console.log(test.getDate())
-
+useEffect(()=>{
+  let expConversion1 = pantry.map(food => food.pantryitems[0].expiration_date)
+  let expConversion2 = expConversion1.map(item => new Date(item))
+  let today = new Date()
+  today.setDate(today.getDate()+30)
+  let expConversion3 = expConversion2.filter(date => date.getTime() < today.getTime())
+  let expDatesFilter = expConversion3.map(date => {
+   let dateString = date.getFullYear() + '-'
+    + ('0' + (date.getMonth()+1)).slice(-2) + '-'
+    + ('0' + (date.getDate()+1)).slice(-2);
+  return dateString
+  })
+  let expiringProduct = pantry.filter(item=> expDatesFilter.includes(item.pantryitems[0].expiration_date))
+  console.log(expiringProduct)
+  setExpiring(expiringProduct)
+}, [pantry])
 
   return (
     <div>
@@ -61,8 +67,7 @@ console.log(expiring)
           </Form>
     <div className='expiredcontainer'>
         <h1> Expired or Soon to Be Expired:</h1>
-        {/* {pantry.filter(item=> item.)} */}
-
+        {expiring.map( product => <Expiring food={product} key={product.id}/> )}
     </div>
         <Ingredients pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
         <Spices pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
