@@ -1,11 +1,39 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
 
 
 function InventoryCard({food, deletePantryItem}) {
   const [quantity, setQuantity] = useState(food.pantryitems[0].quantity)
-    function deleteFromPantry(){
+  const [editExp, setEditExp] = useState(false)
+  const [exp, setExp] = useState(food.pantryitems[0].expiration_date)
+function expEdit(){
+
+  fetch(`/pantryitems/${food.id}`,{
+    method: "PATCH",
+     headers: {
+    "Content-Type" : "Application/json"
+    },
+    body: JSON.stringify({
+    expiration_date: exp
+   })
+    })
+  .then(r=>r.json())
+  .then(data=>setExp(data.expiration_date))
+  setEditExp(!editExp)
+  }
+
+function expChange(e){
+    setExp(e.target.value)
+  }
+
+  function showEdit(){
+    setEditExp(!editExp)
+  }
+
+
+function deleteFromPantry(){
         fetch(`/pantryitems/${food.id}`, 
         { method: "DELETE" }).then((r) => {
             if (r.ok) {
@@ -17,15 +45,30 @@ function InventoryCard({food, deletePantryItem}) {
             }
           });
     }
+
   return (
     <div className='pantryItemCard' >
     <Card style={{ width: '13rem' }} bg="secondary">
   <Card.Img src={food.url} style={{ height: '10rem' }}/>
   <Card.Body>
     <Card.Title id={food.id}>{food.name}</Card.Title>
- <Card.Text>
-      {"Expires: " + food.pantryitems[0].expiration_date}
-    </Card.Text>
+
+    {editExp ? <Card.Text> <Form>
+            <Form.Control 
+            type="date"
+            placeholder="expiration"
+            onChange={expChange}
+            />
+          <Button variant="success" onClick={expEdit}>Submit</Button></Form>
+        </Card.Text> : <Card.Text>
+      {"Expires: " + exp}
+          <Button style={{marginLeft : '15px'}} variant="danger" onClick={showEdit}>Edit</Button>
+        </Card.Text> }
+
+
+
+
+     
     <Card.Text>
       {"Quantity: " + quantity}
     </Card.Text>

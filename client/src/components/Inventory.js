@@ -45,7 +45,7 @@ useEffect(()=>{
   return dateString
   })
   let expiringProduct = pantry.filter(item=> expDatesFilter.includes(item.pantryitems[0].expiration_date))
-  console.log(expiringProduct)
+  // console.log(expiringProduct)
   setExpiring(expiringProduct)
 }, [pantry])
 

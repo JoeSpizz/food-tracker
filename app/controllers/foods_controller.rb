@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
+   
     def index 
-        foods = Food.all 
+        foods = Food.all.order(:category)
         render json: foods, status: :ok 
     end
     def show
@@ -17,4 +18,7 @@ class FoodsController < ApplicationController
         food.destroy 
         head :no_content
     end
+
+
+    
 end

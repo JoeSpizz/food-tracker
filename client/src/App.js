@@ -28,14 +28,14 @@ function App() {
     });
   }, []);
 
-useEffect(()=>{
-    fetch('/pantryitems')
-    .then(r=>r.json())
-    .then(data=> setPantry(data))
-}, [])
 
   function login(data){
     setUser(data)
+    fetch('/pantryitems').then((r)=>{
+      if (r.ok){
+        r.json().then(data=>setPantry(data))
+      }
+    })
   }
   function finalizeAdd(data, food){
     let test = pantry.filter(item => item.name === food.name)
@@ -52,7 +52,7 @@ useEffect(()=>{
     .then(r=>r.json())
     .then(data=> setPantry(data))
     }}
-console.log(pantry)
+// console.log(pantry)
   function deletePantryItem (id){
     let newPantry = pantry.filter(item => item.id !== id)
     setPantry(newPantry)

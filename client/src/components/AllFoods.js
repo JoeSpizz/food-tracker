@@ -31,11 +31,12 @@ function AllFoods({finalizeAdd, createNewFood}) {
             setDisplay(foods)
         }
         else {
+          console.log(foods)
        let displayedFoods= foods.filter(food => food.category === category)
         setDisplay(displayedFoods)
         }
     }
-console.log(foods)
+
 
     function search(e){
       let item = e.target.value
@@ -90,8 +91,12 @@ console.log(foods)
         body: JSON.stringify(newFood)
       })
       .then(r=>r.json())
-      .then(data=> setFoods(foods.push(data)))
-      console.log(foods)
+      .then(data=> {
+        let newFood = [...foods, data]
+        setFoods(newFood)
+        setDisplay(newFood)
+      })
+      // console.log(foods)
       }
 
 
