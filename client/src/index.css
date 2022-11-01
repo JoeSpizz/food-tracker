@@ -68,10 +68,8 @@ code {
 }
 .pantrySection {
   font-size: 1em;
-/* border: 5px;
-border-color: #39C0ED;
-border-style: solid;
-border-radius: 10%;
-width: auto;
-margin-bottom: 5px; */
+}
+.delete {
+  text-align: center;
+  margin-left: 5px;
 }

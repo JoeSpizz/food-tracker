@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form';
 
-function AllFoodCard({food, finalizeAdd}) {
+function AllFoodCard({food, finalizeAdd, deleteFromAll}) {
 const [editExp, setEditExp] = useState(false)
 const [exp, setExp] = useState("")
 function expEdit(){
@@ -20,7 +20,7 @@ useEffect(()=> {
     let month = date.getMonth() +1
     let year = date.getFullYear()
     setExp(`${year}-${month}-${day}`)
-}, [food])
+}, [food.ave_expiration_length])
 
 function addFoodToPantry(e){
     e.preventDefault()
@@ -40,6 +40,15 @@ function addFoodToPantry(e){
       alert(food.name + " added to pantry")
       finalizeAdd(data, food)})
 }
+function deleteFood(){
+  if(window.confirm("This will delete food for ALL USERS. Only delete if you are sure [Admin ONLY]")){
+ fetch(`/foods/${food.id}`,{
+  method: "DELETE",})
+  .then (r=> {
+    if (r.ok){
+      deleteFromAll(food.id)
+  }
+})}}
   return (
     <div className='allFoodsCard' >
         <Card style={{ width: '13rem' }} bg="secondary">
@@ -57,7 +66,8 @@ function addFoodToPantry(e){
           {exp}
           <Button style={{marginLeft : '15px'}} variant="danger" onClick={expEdit}>Edit</Button>
         </Card.Text> }
-        <Button variant="success" style={{marginBottom : '-10px'}} onClick={addFoodToPantry}>Add to Pantry</Button> 
+        <Button variant="success" onClick={addFoodToPantry}>Add to Pantry</Button> 
+        <Button variant="danger" className="delete" onClick={deleteFood}><span >X</span></Button>
       </Card.Body>
     </Card>
     </div>

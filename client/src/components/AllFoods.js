@@ -23,7 +23,7 @@ function AllFoods({finalizeAdd, createNewFood}) {
         .then(foods=>{
             setFoods(foods)
             setDisplay(foods)})
-    }, [])
+    }, [foods])
 
     function filter (e){
         let category = e.target.value
@@ -31,7 +31,6 @@ function AllFoods({finalizeAdd, createNewFood}) {
             setDisplay(foods)
         }
         else {
-          console.log(foods)
        let displayedFoods= foods.filter(food => food.category === category)
         setDisplay(displayedFoods)
         }
@@ -99,7 +98,11 @@ function AllFoods({finalizeAdd, createNewFood}) {
       // console.log(foods)
       }
 
-
+function deleteFromAll(id){
+  let newFoods = foods.filter(item => item.id !== id)
+  console.log(newFoods)
+  setFoods(newFoods)
+}
   return (
     <div>
        <h1>All Foods</h1>
@@ -138,7 +141,7 @@ function AllFoods({finalizeAdd, createNewFood}) {
 
 
     <br></br>
-    {display.map(food=> <AllFoodCard food={food} key={food.id} finalizeAdd={finalizeAdd}/>)}
+    {display.map(food=> <AllFoodCard food={food} key={food.id} finalizeAdd={finalizeAdd} deleteFromAll={deleteFromAll}/>)}
   
     </div>
   )

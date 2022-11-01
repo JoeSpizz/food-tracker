@@ -14,7 +14,7 @@ class FoodsController < ApplicationController
         render json: food, status: :created
     end
     def destroy 
-        food = Food.find_by(id: params(:id))
+        food = Food.find_by(id: params[:id])
         food.destroy 
         head :no_content
     end

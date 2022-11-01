@@ -69,6 +69,9 @@ const hideDropdown = e => {
             <LinkContainer to="/allFoods">
             <Nav.Link >All Foods</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/recipes">
+            <Nav.Link >Meals/Recipes</Nav.Link>
+            </LinkContainer>
           </Nav>
          
           <Button variant="danger" className='logoutBtn' onClick={logout}>Logout</Button>

@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/esm/Button'
 import Form  from 'react-bootstrap/Form'
 import Expiring from './Expiring'
 import Ingredients from './Ingredients'
-import Leftovers from './Leftovers'
 import Meals from './Meals'
 import Snacks from './Snacks'
 import Spices from './Spices'
@@ -72,7 +71,6 @@ useEffect(()=>{
         <Spices pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
         <Snacks pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
         <Meals pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
-        <Leftovers pantry={pantry} deletePantryItem={deletePantryItem} searched={searched}/>
     </div>
   )
 }

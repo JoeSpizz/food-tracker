@@ -11,10 +11,11 @@ import AllFoods from './components/AllFoods';
 import Ingredients from './components/Ingredients';
 import Spices from './components/Spices';
 import Meals from './components/Meals';
-import Leftovers from './components/Leftovers';
 import NavBar from './components/NavBar';
 import Inventory from './components/Inventory';
 import Snacks from './components/Snacks';
+import Recipes from './components/Recipes';
+
 function App() {
   const [user, setUser] = useState(null);
   const [pantry, setPantry] = useState([])
@@ -23,7 +24,14 @@ function App() {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user.username));
+        r.json().then((user) => {
+          setUser(user.username)
+          fetch('/pantryitems').then((r)=>{
+            if (r.ok){
+              r.json().then(data=>setPantry(data))
+            }
+          })
+        });
       }
     });
   }, []);
@@ -73,7 +81,7 @@ function App() {
         <Route exact path="/spices" element={<Spices pantry={pantry} deletePantryItem={deletePantryItem}/>} />
         <Route exact path="/snacks" element={<Snacks pantry={pantry} deletePantryItem={deletePantryItem}/>} />
         <Route exact path="/meals" element={<Meals pantry={pantry} deletePantryItem={deletePantryItem}/>} />
-        <Route exact path="/leftovers" element={<Leftovers pantry={pantry} deletePantryItem={deletePantryItem}/>} />
+        <Route exact path="/recipes" element={<Recipes/>} />
        </Routes>  
        </BrowserRouter>
     </div>
