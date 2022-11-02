@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {Form, Button, InputGroup} from 'react-bootstrap/'
 import RecipeIngredientSearch from './RecipeIngredientSearch'
 
-function RecipesAddForm() {
+function RecipesAddForm({resetForm}) {
 const [foods, setFoods] = useState([])
 const [recName, setRecName] = useState("")
 const [recUrl, setRecUrl] = useState("")
@@ -17,18 +17,27 @@ useEffect(()=>{
         setFoods(foods)
         })
 }, [])
-  
-      function removeIngredient(){
-      
-    }
 
     function createMeal(e){
         e.preventDefault()
-        console.log({
+        let recipe = {
             name : recName,
             url : recUrl,
-            ingredients : ingredients})
+            ingredients_attributes : ingredients}
+        fetch('/recipes',{
+            method: "POST",
+            headers: {
+                "Content-type" : "Application/json"
+            },
+            body: JSON.stringify(recipe)
+        })
+        .then(r=>r.json())
+        .then(data=>console.log(data))
+
+            resetForm()
       }
+
+
     function newRecName(e){
         setRecName(e.target.value)
     }
@@ -80,8 +89,6 @@ useEffect(()=>{
               </InputGroup>
            {searched}
            <ul>{shownIngredients.map(ingredient=> <li>{ingredient.name + ", Quantity: " + ingredient.quantity}</li>)}</ul>
-           
-            <Button variant='danger' onClick={removeIngredient}>Remove Ingredient</Button>
             <Button variant="success" type="submit">Create</Button>
         </Form>
 

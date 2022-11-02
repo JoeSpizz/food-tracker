@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   resources :recipefoods
-  resources :recipes
+  resources :recipes do
+    resources :recipefoods
+  end
   resources :pantryitems do
     resources :foods 
   end
