@@ -9,7 +9,7 @@ function showForm(){
   setForm(!form)
 }
 function resetForm(){
-  // setForm(!form)
+  setForm(!form)
 }
 
   return (
