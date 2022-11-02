@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
-import {Form, Button} from 'react-bootstrap/'
+import React, { useEffect, useState } from 'react'
+import {Form, Button, InputGroup} from 'react-bootstrap/'
+import RecipeIngredientSearch from './RecipeIngredientSearch'
 
 function RecipesAddForm() {
-const [ingNum, setIngNum] = useState([1])
+const [foods, setFoods] = useState([])
 const [recName, setRecName] = useState("")
 const [recUrl, setRecUrl] = useState("")
-const [ingredients, setIngredients] = useState({})
+const [ingredients, setIngredients] = useState([])
+const [searched, setSearched] = useState([])
+const [shownIngredients, setShownIngredients] = useState([])
 
+useEffect(()=>{
+    fetch('/foods')
+    .then(r=>r.json())
+    .then(foods=>{
+        setFoods(foods)
+        })
+}, [])
   
-      function addIngredient(){
-          let numup = ingNum.length + 1
-          setIngNum([...ingNum, numup])
-      }
       function removeIngredient(){
-        setIngNum(ingNum.slice(1))
+      
     }
 
     function createMeal(e){
@@ -21,10 +27,7 @@ const [ingredients, setIngredients] = useState({})
         console.log({
             name : recName,
             url : recUrl,
-            ingredients : ingredients
-
-            
-        })
+            ingredients : ingredients})
       }
     function newRecName(e){
         setRecName(e.target.value)
@@ -32,16 +35,27 @@ const [ingredients, setIngredients] = useState({})
     function newRecUrl(e){
         setRecUrl(e.target.value)
     }
-    function newIngredient(e, updatedAt){
-        let name = e.target.name
+
+    function newIngredient(e){
         let value = e.target.value
-        setIngredients({...ingredients, [name]: value})
-        console.log(name, value)
+        let searchedItem = foods.filter(food => food.name.toLowerCase().includes(value.toLowerCase()))
+        if (searchedItem.length === 0 ){
+        alert("No Food item matches what you've typed. Please check spelling. You may have to add this food to all foods if it doesn't exist already")}
+        else{
+        setSearched(searchedItem.map(food=> <RecipeIngredientSearch food={food} assignFood={assignFood}/>))}
+      
+        }
+    function assignFood(food, quantity){
+
+        setIngredients([...ingredients, { food_id: food.id, quantity: quantity}])
+        setSearched([])
+        setShownIngredients([...shownIngredients, {name: food.name, quantity: quantity}])
     }
 
 
+
   return (
-    <div>
+    <div className='recipeForm'>
           <Form onSubmit={createMeal} >
             <Form.Control
               type="text"
@@ -55,22 +69,23 @@ const [ingredients, setIngredients] = useState({})
               className="recipeFormControl"
               onChange={newRecUrl}
             />
-           {ingNum.map(item=>{
-               return <Form.Control
-               type="text"
-               placeholder={`Ingredient ${ingNum.indexOf(item) +1}`}
+            <InputGroup>
+           <Form.Control
+               type="search"
+               placeholder="Add Ingredient"
                className="recipeFormControl"
-               name={`Ingedient${ingNum.indexOf(item) +1}`}
-               key={ingNum.indexOf(item)}
+               name="New Ingredient"
                onChange={newIngredient}
                />
-
-           })}
+              </InputGroup>
+           {searched}
+           <ul>{shownIngredients.map(ingredient=> <li>{ingredient.name + ", Quantity: " + ingredient.quantity}</li>)}</ul>
            
-            <Button variant='warning' onClick={addIngredient}>Add Ingredient</Button>
             <Button variant='danger' onClick={removeIngredient}>Remove Ingredient</Button>
             <Button variant="success" type="submit">Create</Button>
         </Form>
+
+
     </div>
   )
 }

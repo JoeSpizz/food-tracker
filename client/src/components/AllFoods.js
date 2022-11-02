@@ -23,7 +23,7 @@ function AllFoods({finalizeAdd, createNewFood}) {
         .then(foods=>{
             setFoods(foods)
             setDisplay(foods)})
-    }, [foods])
+    }, [])
 
     function filter (e){
         let category = e.target.value
@@ -41,6 +41,7 @@ function AllFoods({finalizeAdd, createNewFood}) {
       let item = e.target.value
       let searchedItem = foods.filter(food => food.name.toLowerCase().includes(item.toLowerCase()) )
       setDisplay(searchedItem)
+     
     }
     const popoverBottom = (
       <Popover id="popover-positioned-bottom" title="Popover bottom">
@@ -100,7 +101,6 @@ function AllFoods({finalizeAdd, createNewFood}) {
 
 function deleteFromAll(id){
   let newFoods = foods.filter(item => item.id !== id)
-  console.log(newFoods)
   setFoods(newFoods)
 }
   return (
@@ -125,21 +125,12 @@ function deleteFromAll(id){
       <option value="snack">Snacks</option>
     </Form.Select>
     </div>
-
-
-
     <div className='addnewCategory'>
       <br></br>
       <OverlayTrigger trigger="click" placement="bottom" overlay={popoverBottom}>
         <Button> New Food</Button>
       </OverlayTrigger>
     </div>
-
-
-
-
-
-
     <br></br>
     {display.map(food=> <AllFoodCard food={food} key={food.id} finalizeAdd={finalizeAdd} deleteFromAll={deleteFromAll}/>)}
   

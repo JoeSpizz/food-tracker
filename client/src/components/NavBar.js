@@ -5,9 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {LinkContainer} from 'react-router-bootstrap'
 import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function NavBar({setUser}) {
     const [show, setShow] = useState(false);
+    const navigate = useNavigate()
 const showDropdown = (e)=>{
     setShow(!show);
 }
@@ -18,6 +20,7 @@ const hideDropdown = e => {
             fetch("/logout", { method: "DELETE" }).then((r) => {
               if (r.ok) {
                 setUser(null);
+                navigate("/")
               }
             });
     }

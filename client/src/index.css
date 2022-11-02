@@ -73,3 +73,15 @@ code {
   text-align: center;
   margin-left: 5px;
 }
+.recipeForm{
+  width: 450px;
+  margin: auto;
+}
+.ingredientSearch{
+  display: inline-flex;
+}
+.ingredientQuantity {
+  max-width: 125px;
+  margin-left: 20px;
+  max-height: 25px;
+}
