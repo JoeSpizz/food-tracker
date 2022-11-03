@@ -41,6 +41,7 @@ function addFoodToPantry(e){
       finalizeAdd(data, food)})
 }
 function deleteFood(){
+
   if(window.confirm("This will delete food for ALL USERS. Only delete if you are sure [Admin ONLY]")){
  fetch(`/foods/${food.id}`,{
   method: "DELETE",})

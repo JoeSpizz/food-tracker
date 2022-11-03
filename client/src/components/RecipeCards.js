@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Card, Form, ListGroup, Table } from 'react-bootstrap'
 
-function RecipeCards({recipe, pantry}) {
+function RecipeCards({recipe, pantry, recipeRemoval}) {
 const [show, setShow] = useState(false)
 const [recipeUrl, setRecipeUrl] = useState("")
 function showRecipe(){
@@ -28,6 +28,19 @@ let pantryFilter = pantry.map(item=> item.name)
         .then(r=>r.json())
         .then(data=> setRecipeUrl(data.url))
   }
+function deleteRecipe(){
+    console.log(recipe.name)
+    if(window.confirm("This will delete the recipe for all users. Are you sure you want to do this?")){
+        fetch(`/recipes/${recipe.id}`, {
+            method: "DELETE",
+        })
+        .then(r=>{
+            if (r.ok){
+                recipeRemoval(recipe.id)
+            }
+        }
+        )}
+}
 
   return (
     <div className='recipeCard'>
@@ -35,6 +48,7 @@ let pantryFilter = pantry.map(item=> item.name)
             <Card.Body >
                 <Card.Title id="recipeTitle">
                     {recipe.name}
+                    <Button variant='danger' onClick={deleteRecipe}>X</Button>
                 </Card.Title >
                 <Button variant='success' onClick={showRecipe}>Recipe Details</Button>
             { show ? <ListGroup>

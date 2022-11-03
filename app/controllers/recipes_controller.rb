@@ -17,6 +17,12 @@ class RecipesController < ApplicationController
         recipe.save
         render json: recipe, status: :accepted 
     end
+
+    def destroy 
+        recipe = Recipe.find_by(id: params[:id])
+        recipe.destroy 
+        head :no_content
+    end
 # The join = ings.map is not properly taking the parameters
     private 
     def recipe_params
