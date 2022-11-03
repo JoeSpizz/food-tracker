@@ -85,3 +85,27 @@ code {
   margin-left: 20px;
   max-height: 25px;
 }
+.recipeCard {
+  display: inline-flex;
+  padding: 5px;
+  max-width: 300px;
+}
+.recipeTable{
+  display: inline-flex;
+  justify-content: center;
+}
+.testBad{
+  color:white;
+  font-weight: bolder;
+}
+.testGood{
+  color: yellowgreen;
+  font-weight: bolder;
+}
+.test2{
+  color: white 
+}
+.link{
+  color: #66ef9d
+  
+}

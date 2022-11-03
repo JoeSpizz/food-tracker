@@ -81,7 +81,7 @@ function App() {
         <Route exact path="/spices" element={<Spices pantry={pantry} deletePantryItem={deletePantryItem}/>} />
         <Route exact path="/snacks" element={<Snacks pantry={pantry} deletePantryItem={deletePantryItem}/>} />
         <Route exact path="/meals" element={<Meals pantry={pantry} deletePantryItem={deletePantryItem}/>} />
-        <Route exact path="/recipes" element={<Recipes/>} />
+        <Route exact path="/recipes" element={<Recipes pantry={pantry}/>} />
        </Routes>  
        </BrowserRouter>
     </div>

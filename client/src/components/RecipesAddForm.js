@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import {Form, Button, InputGroup} from 'react-bootstrap/'
 import RecipeIngredientSearch from './RecipeIngredientSearch'
 
-function RecipesAddForm({resetForm}) {
-const [foods, setFoods] = useState([])
+function RecipesAddForm({resetForm, foods, newRecipe}) {
 const [recName, setRecName] = useState("")
 const [recUrl, setRecUrl] = useState("")
 const [ingredients, setIngredients] = useState([])
 const [searched, setSearched] = useState([])
 const [shownIngredients, setShownIngredients] = useState([])
 
-useEffect(()=>{
-    fetch('/foods')
-    .then(r=>r.json())
-    .then(foods=>{
-        setFoods(foods)
-        })
-}, [])
 
     function createMeal(e){
         e.preventDefault()
@@ -32,7 +24,7 @@ useEffect(()=>{
             body: JSON.stringify(recipe)
         })
         .then(r=>r.json())
-        .then(data=>console.log(data))
+        .then(data=>newRecipe(data))
 
             resetForm()
       }
@@ -47,12 +39,16 @@ useEffect(()=>{
 
     function newIngredient(e){
         let value = e.target.value
+        if (value === ""){
+            setSearched("")
+        }
+        else {
         let searchedItem = foods.filter(food => food.name.toLowerCase().includes(value.toLowerCase()))
         if (searchedItem.length === 0 ){
         alert("No Food item matches what you've typed. Please check spelling. You may have to add this food to all foods if it doesn't exist already")}
         else{
         setSearched(searchedItem.map(food=> <RecipeIngredientSearch food={food} assignFood={assignFood}/>))}
-      
+        }
         }
     function assignFood(food, quantity){
 
@@ -85,6 +81,7 @@ useEffect(()=>{
                className="recipeFormControl"
                name="New Ingredient"
                onChange={newIngredient}
+               autocomplete="off"
                />
               </InputGroup>
            {searched}
