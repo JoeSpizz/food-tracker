@@ -92,14 +92,16 @@ function AllFoods({finalizeAdd, createNewFood}) {
       })
       .then(r=>{
         if (r.ok) {r.json()
-    .then(data=>{
-      let newFood = [...foods,data]
-      setFoods(newFood)
-      setDisplay(newFood)
-    })}
+          .then(data=>{
+                 let newFood = [...foods,data]
+                 setFoods(newFood)
+                 setDisplay(newFood)
+         })}
         else{
             swal("All foods require a name, and a genre")
     }})
+      swal(`Created ${newFoodName}, add another?`)
+      e.target.reset()
       }
 
 function deleteFromAll(id){
