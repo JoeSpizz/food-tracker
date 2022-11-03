@@ -5,9 +5,9 @@ class RecipesController < ApplicationController
     end
 
     def create 
-         recipe = Recipe.create(recipe_params)
+        recipe = Recipe.create!(recipe_params)
         ings = params[:ingredients_attributes]
-        join = ings.map{|item| Recipefood.create(food_id: item[:food_id], recipe_id: recipe.id, quantity: item[:quantity])}
+        join = ings.map{|item| Recipefood.create!(food_id: item[:food_id], recipe_id: recipe.id, quantity: item[:quantity])}
         render json: recipe, status: :created
     end
 
@@ -26,8 +26,7 @@ class RecipesController < ApplicationController
 # The join = ings.map is not properly taking the parameters
     private 
     def recipe_params
-        params.permit(
-            :name,
+        params.permit(:name, 
             :url, :ingredients_attributes)
     end
 end

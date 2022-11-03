@@ -1,5 +1,6 @@
 import React, {useState } from 'react'
 import {Form, Button, InputGroup} from 'react-bootstrap/'
+import swal from 'sweetalert'
 import RecipeIngredientSearch from './RecipeIngredientSearch'
 
 function RecipesAddForm({resetForm, foods, newRecipe}) {
@@ -23,10 +24,14 @@ const [shownIngredients, setShownIngredients] = useState([])
             },
             body: JSON.stringify(recipe)
         })
-        .then(r=>r.json())
+        .then(r=>{
+            if (r.ok) {r.json()
         .then(data=>newRecipe(data))
-
-            resetForm()
+            resetForm()}
+            else{
+                swal("A name and at least one ingredient are required")
+        }})
+        
       }
 
 

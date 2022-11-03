@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form';
+import swal from 'sweetalert'
 
 function AllFoodCard({food, finalizeAdd, deleteFromAll}) {
 const [editExp, setEditExp] = useState(false)
@@ -37,7 +38,7 @@ function addFoodToPantry(e){
     })
     .then(r=>r.json())
     .then(data=> {
-      alert(food.name + " added to pantry")
+      swal(food.name + " added to pantry")
       finalizeAdd(data, food)})
 }
 function deleteFood(){

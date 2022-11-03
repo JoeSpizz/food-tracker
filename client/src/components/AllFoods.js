@@ -4,6 +4,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover'
 import Form from 'react-bootstrap/Form';
 import AllFoodCard from './AllFoodCard';
+import swal from 'sweetalert';
 
 function AllFoods({finalizeAdd, createNewFood}) {
     const [foods, setFoods] = useState([])
@@ -53,7 +54,7 @@ function AllFoods({finalizeAdd, createNewFood}) {
               onChange={newName}
             />
             <Form.Control
-              type="text"
+              type="url"
               placeholder="New Food Image URL"
               className="me-2"
               onChange={newImageURL}
@@ -65,7 +66,6 @@ function AllFoods({finalizeAdd, createNewFood}) {
               onChange={newExp}
             />
              <Form.Select aria-label="Default select example" onChange={onInput}>
-      <option value="none">Food Genre</option>
       <option value="ingredient">Ingredient</option>
       <option value="spice">Spice</option>
       <option value="snack">Snack</option>
@@ -90,13 +90,16 @@ function AllFoods({finalizeAdd, createNewFood}) {
         headers: {"Content-type" : "Application/json"},
         body: JSON.stringify(newFood)
       })
-      .then(r=>r.json())
-      .then(data=> {
-        let newFood = [...foods, data]
-        setFoods(newFood)
-        setDisplay(newFood)
-      })
-      // console.log(foods)
+      .then(r=>{
+        if (r.ok) {r.json()
+    .then(data=>{
+      let newFood = [...foods,data]
+      setFoods(newFood)
+      setDisplay(newFood)
+    })}
+        else{
+            swal("All foods require a name, and a genre")
+    }})
       }
 
 function deleteFromAll(id){
