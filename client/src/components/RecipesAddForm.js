@@ -90,7 +90,8 @@ const [shownIngredients, setShownIngredients] = useState([])
                />
               </InputGroup>
            {searched}
-           <ul>{shownIngredients.map(ingredient=> <li>{ingredient.name + ", Quantity: " + ingredient.quantity}</li>)}</ul>
+           <ul>{shownIngredients.map(ingredient=> <li>{ingredient.name 
+           + ", Quantity: " + ingredient.quantity}</li>)}</ul>
             <Button variant="success" type="submit">Create</Button>
         </Form>
 
