@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+# Install instructions 
+The Food Tracker/Your Pantry app is a full stack appliication using React on the front and Rails on the back-end. This ReadMe serves for the React Front End, the Ruby ReadMe contains more instructions for that section. 
+This project was created with [Create React App](https://github.com/facebook/create-react-app).
+To install this React portion run 'npm install --prefix client'. Then 'npm start --prefix client'.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Code Credits
+While the vast majority of this app was written by Joe Spizzandre, I did utilize a few additional resources. First and most powerfully was [React Bootstrap]("https://react-bootstrap.github.io/") which took over styling for the majority of the app. For the alerts I found [Sweet Alert]("https://github.com/t4t5/sweetalert"), which was easy to use and looks far better than .alert().
 
-## Available Scripts
 
-In the project directory, you can run:
+## Program functionality
 
-### `npm start`
+From a front end persepctive a User can create a new username/password combination. Once logged in they will see the welcome page. If they have already added foods to their pantry then their inventory will be loaded for review. On the inventory overview page any foods that are getting close to expiring are automatically displayed. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The All Foods page can be used to add items to your pantry, adding multiple times will tick up the quanitity. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+On the recipe page a user can review all recipes created, can add a recipe, and will have any ingredients that are currently in a user's inventory will be highlighted green. 
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
