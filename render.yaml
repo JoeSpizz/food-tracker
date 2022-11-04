@@ -7,7 +7,6 @@ services:
   - type: web
     name: mysite
     env: ruby
-    plan: free
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     plan: free
@@ -18,4 +17,3 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
-        plan: free
