@@ -10,6 +10,7 @@ services:
     plan: free
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
+    plan: free
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -17,3 +18,4 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+        plan: free
