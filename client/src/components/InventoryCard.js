@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
+import swal from 'sweetalert'
 
 
 function InventoryCard({food, deletePantryItem}) {
@@ -34,17 +35,36 @@ function expChange(e){
 
 
 function deleteFromPantry(){
-  // put in swal confirm here. 
-        fetch(`/pantryitems/${food.id}`, 
-        { method: "DELETE" }).then((r) => {
-            if (r.ok) {
-              if (quantity > 1){
-                setQuantity(quantity-1)
+    swal("Remove item from Pantry/Reduce Quantity by 1?", {
+      buttons: {
+        cancel: "Nevermind!",
+        catch: {
+          text: "Delete",
+          value: "catch",
+        }
+      },
+    })
+    .then((value) => {
+      switch (value) {
+        case "catch":
+          fetch(`/pantryitems/${food.id}`, 
+          { method: "DELETE" }).then((r) => {
+              if (r.ok) {
+                if (quantity > 1){
+                  setQuantity(quantity-1)
+                }
+                else
+               deletePantryItem(food.id)
               }
-              else
-             deletePantryItem(food.id)
-            }
-          });
+            });
+          swal("Removed");
+          break;
+     
+        default:
+          swal("Nothing happened.");
+      }
+    });
+       
     }
 
   return (

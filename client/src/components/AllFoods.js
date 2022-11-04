@@ -105,8 +105,10 @@ function AllFoods({finalizeAdd, createNewFood}) {
       }
 
 function deleteFromAll(id){
+  console.log("delete run")
   let newFoods = foods.filter(item => item.id !== id)
   setFoods(newFoods)
+  setDisplay(newFoods)
 }
   return (
     <div>

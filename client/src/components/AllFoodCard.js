@@ -41,16 +41,32 @@ function addFoodToPantry(e){
       swal(food.name + " added to pantry")
       finalizeAdd(data, food)})
 }
+
 function deleteFood(){
 
-  if(window.confirm("This will delete food for ALL USERS. Only delete if you are sure [Admin ONLY]")){
- fetch(`/foods/${food.id}`,{
-  method: "DELETE",})
-  .then (r=> {
-    if (r.ok){
-      deleteFromAll(food.id)
-  }
-})}}
+  swal("This will delete food for ALL USERS. Only delete if you are sure [Admin ONLY]",{
+    buttons: {
+      cancel: "Nevermind",
+      catch: {
+        text: "Yes, delete!",
+        value: "confirm",},},})
+  .then((value)=>{
+    switch(value){
+      case "confirm":
+        fetch(`/foods/${food.id}`,{
+          method: "DELETE",})
+          .then (r=> {
+            if (r.ok){
+              deleteFromAll(food.id)
+          }
+        })
+        swal("Deleted");
+        break;
+        default:
+          swal('Left Alone')
+    }
+  })
+}
   return (
     <div className='allFoodsCard' >
         <Card style={{ width: '13rem' }} bg="secondary">
