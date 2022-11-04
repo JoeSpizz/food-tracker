@@ -34,6 +34,7 @@ function expChange(e){
 
 
 function deleteFromPantry(){
+  // put in swal confirm here. 
         fetch(`/pantryitems/${food.id}`, 
         { method: "DELETE" }).then((r) => {
             if (r.ok) {
@@ -64,11 +65,6 @@ function deleteFromPantry(){
       {"Expires: " + exp}
           <Button style={{marginLeft : '15px'}} variant="danger" onClick={showEdit}>Edit</Button>
         </Card.Text> }
-
-
-
-
-     
     <Card.Text>
       {"Quantity: " + quantity}
     </Card.Text>

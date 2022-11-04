@@ -15,7 +15,13 @@ code {
 }
 
 #loginPage{
-  color: white
+  text-align: center;
+  width: 500px;
+  margin: auto;
+  color:#39C0ED;
+}
+.userLogin{
+ margin-bottom: 10px;
 }
 
 .appExplination {
@@ -106,6 +112,5 @@ code {
   color: white 
 }
 .link{
-  color: #66ef9d
-  
+  color: #66ef9d 
 }

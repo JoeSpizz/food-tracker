@@ -63,11 +63,6 @@ const hideDropdown = e => {
                 Premade Meals
               </NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/leftovers">
-              <NavDropdown.Item>
-                Leftovers
-              </NavDropdown.Item>
-              </LinkContainer>
             </NavDropdown>
             <LinkContainer to="/allFoods">
             <Nav.Link >All Foods</Nav.Link>

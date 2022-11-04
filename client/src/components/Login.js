@@ -41,18 +41,21 @@ function Login({login}) {
      
   return (
     <div id={"loginPage"}>
-        <form className='userLogin' style={{visibility: visibilityState}} onSubmit={handleSubmit}>
+        <h1 > Your Pantry</h1>
+        <p> An app to help you track all the food in your house. From expiration warnings to recipe lists this app is designed to be the only thing you need when planning meals or grocery runs.</p>
+        <form  style={{visibility: visibilityState}} onSubmit={handleSubmit}>
    <label for="uname"><b>Username: </b></label>
-       <input type="text" placeholder='Name' required onChange={changeName} name="name"></input>
+       <input type="text" placeholder='Name' required onChange={changeName} name="name" className='userLogin'></input>
+       <br></br>
        <label for="pass"><b>Password: </b></label>
-       <input type="password" placeholder='Enter Password' required name="password" onChange={changePass}></input>
+       <input type="password" placeholder='Enter Password' required name="password" onChange={changePass} className='userLogin'></input>
        <br></br>
         <input type="submit" value="Login" />
  </form>
 <br></br>
  <div id="createUser">
         <button value="Create User" onClick={handleClick} className="userButton">{userForm? "Login" : "Create User"}</button>
-        {userForm ? <CreateUser />: null}
+        {userForm ? <CreateUser handleClick={handleClick}/>: null}
     </div>
     </div>
   )

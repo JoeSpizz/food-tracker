@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
+import swal from 'sweetalert'
 
-function CreateUser() {
+function CreateUser({handleClick}) {
     const [name, setName] = useState("")
     const [password, setPassword]= useState("")
     const [passConfirm, setPassConfirm] = useState("")
@@ -28,12 +29,13 @@ function CreateUser() {
                 )})
                 .then (r=>{
                     if (r.ok) {
-                    r.json().then(data=>alert(data.username))
+                    r.json().then(data=>swal(data.username+ "created, please log in"))
                     }
                     else{
                         r.json().then(data=>alert(data.errors))
                     }
-            })}
+            })
+            handleClick()}
 
   
       return (
