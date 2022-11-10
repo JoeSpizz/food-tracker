@@ -9,13 +9,13 @@ import swal from 'sweetalert';
 function AllFoods({finalizeAdd, createNewFood}) {
     const [foods, setFoods] = useState([])
     const [display, setDisplay] = useState([])
-    const [newFoodName, setNewFoodName] = useState([]),
+    const [newFoodName, setNewFoodName] = useState(""),
     newName = ({target:{value}}) => setNewFoodName(value)
-    const [newCategory, setNewCategory] = useState([]),
+    const [newCategory, setNewCategory] = useState("ingredient"),
     onInput = ({target:{value}}) => setNewCategory(value)
-    const [newImage, setNewImage] = useState([]),
+    const [newImage, setNewImage] = useState(""),
     newImageURL = ({target:{value}}) => setNewImage(value)
-    const [newExpiration, setNewExpiration] = useState([]),
+    const [newExpiration, setNewExpiration] = useState(""),
     newExp = ({target:{value}}) => setNewExpiration(value)
 
     useEffect(()=>{
