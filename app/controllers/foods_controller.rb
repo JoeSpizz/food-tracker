@@ -10,12 +10,13 @@ class FoodsController < ApplicationController
     end
     # make the below params strong with params.require. set expiration to 0 if none
     def create 
-        # We want to add in code to the foods controller so that if someone sends information for a new food with no expiration length the default is setting it to 365
-        # food = Food.create!(name: params[:name], url: params[:url], ave_expiration_length: params[:ave_expiration_length], category: params[:category])
-        # food = Food.new(name: params[:name], ave_expiration_length: 365, category: params[:category])
-        food = Food.create!(ave_expiration_length: 365, food_params)
-        byebug
+        if params[:ave_expiration_length] == ""
+        food = Food.create!(name: params[:name], url: params[:url], ave_expiration_length:365, category: params[:category])
         render json: food, status: :created
+        else
+         food = Food.create!(food_params)
+        render json: food, status: :created
+        end
     end
 
     def destroy 
