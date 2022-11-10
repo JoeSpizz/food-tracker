@@ -41,7 +41,7 @@ function Login({login}) {
      
   return (
     <div id={"loginPage"}>
-        <h1 > Your Pantry</h1>
+        <h1 > Your Pantry!!!</h1>
         <p> An app to help you track all the food in your house. From expiration warnings to recipe lists this app is designed to be the only thing you need when planning meals or grocery runs.</p>
         <form  style={{visibility: visibilityState}} onSubmit={handleSubmit}>
    <label for="uname"><b>Username: </b></label>
