@@ -29,10 +29,10 @@ function CreateUser({handleClick}) {
                 )})
                 .then (r=>{
                     if (r.ok) {
-                    r.json().then(data=>swal(data.username+ "created, please log in"))
+                    r.json().then(data=>swal(data.username+ " created, please log in"))
                     }
                     else{
-                        r.json().then(data=>alert(data.errors))
+                        r.json().then(data=>swal(data.errors))
                     }
             })
             handleClick()}
